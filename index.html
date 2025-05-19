@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/topojson-client@3"></script>
 
   <!-- Custom map logic -->
-  <script src="static/js/map.js" defer></script>
+  <script src="/data/js/map.js" defer></script>
 
   <style>
     body {
@@ -49,11 +49,14 @@
     .country:hover {
       fill: orange;
     }
+    .map-title {
+  margin-top: 0;   /* or whatever value you like */
+    }
   </style>
 </head>
 <body>
 
-  <h1>Printing Activity in Europe (1450–1500)</h1>
+  <h1 class = "map-title" style="font-size: 20px;">Printing Activity in Europe (1450–1500)</h1>
   <svg id="map" width="600" height="600"></svg>
   <svg id="bar-chart" width="300" height="600"></svg>
 </body>

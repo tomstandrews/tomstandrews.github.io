@@ -5,7 +5,6 @@ const svg = d3.select("#map")
   .attr("width", width)
   .attr("height", height);
 
-// Clip path to crop right side
 svg.append("clipPath")
   .attr("id", "clip-right")
   .append("rect")
@@ -14,18 +13,15 @@ svg.append("clipPath")
   .attr("width", width)
   .attr("height", height);
 
-// Group for map + cities inside clip path
 const mapGroup = svg.append("g")
   .attr("clip-path", "url(#clip-right)");
 
-// Year label
 const yearText = svg.append("text")
   .attr("x", 20)
   .attr("y", 40)
   .attr("font-size", "32px")
   .attr("fill", "#333");
 
-// Selected country label (below year label)
 const countryLabel = svg.append("text")
   .attr("x", 20)
   .attr("y", 80)
@@ -54,7 +50,6 @@ let currentIndex = 0;
 let intervalId = null;
 let selectedCountry = null;
 
-// Bar chart setup
 const barSvg = d3.select("#bar-chart");
 const barMargin = { top: 40, right: 20, bottom: 80, left: 50 };
 const barWidth = +barSvg.attr("width") - barMargin.left - barMargin.right;
@@ -68,7 +63,7 @@ barSvg.append("text")
   .attr("y", 20)
   .attr("font-size", "16px")
   .attr("fill", "#333")
-  .text("Top 10 Cities by Frequency");
+  .text("Top 5 Cities by Frequency");
 
 let xBarScale = d3.scaleBand().range([0, barWidth]).padding(0.1);
 let yBarScale = d3.scaleLinear().range([barHeight, 0]);
@@ -99,11 +94,12 @@ function updateMap() {
 
   const top10 = [...citiesThisYear]
     .sort((a, b) => b.Frequency - a.Frequency)
-    .slice(0, 10);
+    .slice(0, 5);
 
   mapGroup.selectAll(".country").remove();
   mapGroup.selectAll(".city").remove();
   mapGroup.selectAll(".label").remove();
+  mapGroup.selectAll(".label-line").remove();
 
   mapGroup.selectAll(".country")
     .data(countries)
@@ -118,8 +114,7 @@ function updateMap() {
     .style("cursor", "pointer")
     .on("click", function(event, d) {
       zoomToCountry(d);
-      d3.selectAll(".country").classed("selected", false);
-      d3.select(this).classed("selected", true);
+
     });
 
   mapGroup.selectAll(".city")
@@ -136,18 +131,54 @@ function updateMap() {
     .attr("fill", "red")
     .attr("opacity", 0.7);
 
+  // --------- Label overlap fix with force simulation ---------
+  const labelData = top10.map(d => {
+    const [x, y] = projection([d.Longitude, d.Latitude]);
+    return {
+      x,
+      y,
+      x0: x,
+      y0: y,
+      City: d.City,
+      Longitude: d.Longitude,
+      Latitude: d.Latitude,
+      Frequency: d.Frequency
+    };
+  });
+
+  const simulation = d3.forceSimulation(labelData)
+    .force("collide", d3.forceCollide(15))
+    .force("x", d3.forceX(d => d.x0).strength(0.2))
+    .force("y", d3.forceY(d => d.y0).strength(0.2))
+    .stop();
+
+  for (let i = 0; i < 300; ++i) simulation.tick();
+
   mapGroup.selectAll(".label")
-    .data(top10)
+    .data(labelData)
     .enter()
     .append("text")
     .attr("class", "label")
-    .attr("x", d => projection([d.Longitude, d.Latitude])[0] + 5)
-    .attr("y", d => projection([d.Longitude, d.Latitude])[1] - 5)
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
     .text(d => d.City)
     .attr("font-size", "12px")
-    .attr("fill", "#000");
+    .attr("fill", "#000")
+    .attr("text-anchor", "start");
 
-  // Update bar chart
+  mapGroup.selectAll(".label-line")
+    .data(labelData)
+    .enter()
+    .append("line")
+    .attr("class", "label-line")
+    .attr("x1", d => d.x0)
+    .attr("y1", d => d.y0)
+    .attr("x2", d => d.x)
+    .attr("y2", d => d.y)
+    .attr("stroke", "#999")
+    .attr("stroke-width", 0.5);
+
+  // Bar chart update
   xBarScale.domain(top10.map(d => d.City));
   yBarScale.domain([0, d3.max(top10, d => d.Frequency)]);
 
@@ -229,6 +260,7 @@ function resetView() {
   updateMap();
   startAnimation();
 }
+
 function zoomOut() {
   selectedCountry = null;
   countryLabel.text("");
@@ -238,11 +270,12 @@ function zoomOut() {
 
   updateMap();
 }
+
 function zoomToCountry(country) {
   stopAnimation();
 
   selectedCountry = country;
-  countryLabel.text("Selected Country: " + (country.properties.NAME || "Unknown"));
+  countryLabel.text("Country: " + (country.properties.NAME || "Unknown"));
 
   const [[x0, y0], [x1, y1]] = d3.geoBounds(country);
   const centerLon = (x0 + x1) / 2;
@@ -271,7 +304,6 @@ function zoomToCountry(country) {
   startAnimation();
 }
 
-// Load data & initialize
 Promise.all([
   d3.json("/static/data/europe.topojson"),
   d3.json("/static/data/cities.json")
@@ -302,6 +334,7 @@ Promise.all([
   controls.append("button")
     .text("Reset")
     .on("click", resetView);
+
   controls.append("button")
     .text("Zoom Out")
     .style("margin-left", "10px")
