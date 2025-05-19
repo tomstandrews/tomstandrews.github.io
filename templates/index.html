@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Historical Printing Map</title>
+
+  <!-- D3.js and TopoJSON libraries -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+
+  <!-- Custom map logic -->
+  <script src="/data/js/map.js" defer></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #year-label {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    svg {
+      width: 200;
+      height: 600;
+      background-color: white;
+      border: 1px solid #ccc;
+    }
+    .country.selected {
+  fill: orange;
+  stroke: black;
+  stroke-width: 1.5;
+}
+
+    .city {
+      fill: red;
+      opacity: 0.7;
+    }
+    .country {
+      cursor: pointer;
+      transition: fill 0.2s;
+    }
+    .country:hover {
+      fill: orange;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Printing Activity in Europe (1450–1500)</h1>
+  <svg id="map" width="600" height="600"></svg>
+  <svg id="bar-chart" width="300" height="600"></svg>
+</body>
+</html>
