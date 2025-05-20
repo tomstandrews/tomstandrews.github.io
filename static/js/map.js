@@ -112,9 +112,8 @@ function updateMap() {
     .attr("stroke-width", 0.5)
     .classed("selected", d => d === selectedCountry)
     .style("cursor", "pointer")
-    .on("click", function(event, d) {
+    .on("click", function (event, d) {
       zoomToCountry(d);
-
     });
 
   mapGroup.selectAll(".city")
@@ -131,14 +130,10 @@ function updateMap() {
     .attr("fill", "red")
     .attr("opacity", 0.7);
 
-  // --------- Label overlap fix with force simulation ---------
   const labelData = top10.map(d => {
     const [x, y] = projection([d.Longitude, d.Latitude]);
     return {
-      x,
-      y,
-      x0: x,
-      y0: y,
+      x, y, x0: x, y0: y,
       City: d.City,
       Longitude: d.Longitude,
       Latitude: d.Latitude,
@@ -231,13 +226,17 @@ function updateMap() {
     .text(d => d.Frequency);
 
   labels.exit().remove();
-
-  currentIndex = (currentIndex + 1) % years.length;
 }
 
 function startAnimation() {
   if (!intervalId) {
-    intervalId = setInterval(updateMap, 1500);
+    intervalId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % years.length;
+      const year = years[currentIndex];
+      d3.select("input[type=range]").property("value", year);
+      d3.select("span").text(year);
+      updateMap();
+    }, 1500);
   }
 }
 
@@ -250,6 +249,8 @@ function stopAnimation() {
 
 function resetView() {
   stopAnimation();
+
+  // Reset index and projection
   currentIndex = 0;
   selectedCountry = null;
   countryLabel.text("");
@@ -257,23 +258,28 @@ function resetView() {
   projection = createProjection(originalCenter, originalScale, originalTranslate, originalParallels);
   path = d3.geoPath().projection(projection);
 
+  // Reset slider to first year
+  const slider = document.getElementById("year-slider");
+  if (slider) {
+    slider.value = years[0]; // This ensures visual reset
+  }
+
   updateMap();
   startAnimation();
 }
 
+
+
 function zoomOut() {
   selectedCountry = null;
   countryLabel.text("");
-
   projection = createProjection(originalCenter, originalScale, originalTranslate, originalParallels);
   path = d3.geoPath().projection(projection);
-
   updateMap();
 }
 
 function zoomToCountry(country) {
   stopAnimation();
-
   selectedCountry = country;
   countryLabel.text("Country: " + (country.properties.NAME || "Unknown"));
 
@@ -291,17 +297,10 @@ function zoomToCountry(country) {
     originalScale * (180 / countryHeight) * zoomFactorHeight
   );
 
-  projection = createProjection(
-    [centerLon, centerLat],
-    scale,
-    [width / 2, height / 2],
-    originalParallels
-  );
-
+  projection = createProjection([centerLon, centerLat], scale, [width / 2, height / 2], originalParallels);
   path = d3.geoPath().projection(projection);
-
   updateMap();
-  startAnimation();
+
 }
 
 Promise.all([
@@ -319,6 +318,7 @@ Promise.all([
   updateMap();
   startAnimation();
 
+  // Control panel
   const controls = d3.select("body").append("div").style("margin-top", "10px");
 
   controls.append("button")
@@ -340,6 +340,57 @@ Promise.all([
     .style("margin-left", "10px")
     .on("click", zoomOut);
 
+
+
+  // Slider
+  controls.append("label").text("Year: ").style("margin-left", "10px");
+  controls.append("input")
+    .attr("type", "range")
+    .attr("min", d3.min(years))
+    .attr("max", d3.max(years))
+    .attr("step", 1)
+    .attr("value", years[0])
+    .style("width", "300px")
+    .on("input", function () {
+      stopAnimation();
+      const selectedYear = +this.value;
+      currentIndex = years.findIndex(y => y === selectedYear);
+      updateMap();
+      d3.select("span").text(selectedYear);
+    });
+
+  controls.append("span").text(years[0]).style("margin-left", "10px");
+
+
+
+  // Manual navigation
+  controls.append("button")
+    .text("Previous Year")
+    .style("margin-left", "10px")
+    .on("click", () => {
+      stopAnimation();
+      if (currentIndex > 0) {
+        currentIndex--;
+        const year = years[currentIndex];
+        d3.select("input[type=range]").property("value", year);
+        d3.select("span").text(year);
+        updateMap();
+      }
+    });
+
+  controls.append("button")
+    .text("Next Year")
+    .style("margin-left", "10px")
+    .on("click", () => {
+      stopAnimation();
+      if (currentIndex < years.length - 1) {
+        currentIndex++;
+        const year = years[currentIndex];
+        d3.select("input[type=range]").property("value", year);
+        d3.select("span").text(year);
+        updateMap();
+      }
+    });
 }).catch(error => {
   console.error("Data load error:", error);
 });
