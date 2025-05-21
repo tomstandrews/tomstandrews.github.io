@@ -52,6 +52,44 @@
     .map-title {
   margin-top: 0;   /* or whatever value you like */
     }
+    .modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 640px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
   </style>
 </head>
 <body>
@@ -59,8 +97,23 @@
   <h1 class = "map-title" style="font-size: 15px;">Printing Activity in Europe (1450–1500)</h1>
   <svg id="map" width="600" height="600"></svg>
   <svg id="bar-chart" width="300" height="600"></svg>
-<div id="city-info" style="margin-top: 10px; font-size: 14px; font-weight: bold;"></div>
+  <div id="city-info" style="margin-top: 10px; font-size: 14px; font-weight: bold;"></div>
+  <div id="controls" style="display: flex; align-items: center; gap: 10px; margin-top: 20px;">
+  <label for="year-slider">
+  Year: <span id="slider-year-text">---</span>
+</label>
+<input type="range" id="year-slider">
 
+</div>
+<!-- Modal -->
+<div id="cityModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="city-graph-title" style="font-family: sans-serif;"></h3>
+    <svg id="city-line-chart" width="600" height="300"></svg>
+
+  </div>
+</div>
 
 </body>
 </html>
