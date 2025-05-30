@@ -1,0 +1,926 @@
+{
+  "1469": {
+    "City": "Roma",
+    "Latitude": 41.8933203,
+    "Longitude": 12.4829321,
+    "Frequency": 20,
+    "Percentage_Growth": 233.33333333333334
+  },
+  "1470": {
+    "City": "Roma",
+    "Latitude": 41.8933203,
+    "Longitude": 12.4829321,
+    "Frequency": 44,
+    "Percentage_Growth": 120.0
+  },
+  "1471": {
+    "City": "Venezia",
+    "Latitude": 45.4371908,
+    "Longitude": 12.3345898,
+    "Frequency": 72,
+    "Percentage_Growth": 260.0
+  },
+  "1472": {
+    "City": "K\u00f6ln",
+    "Latitude": 50.938361,
+    "Longitude": 6.959974,
+    "Frequency": 54,
+    "Percentage_Growth": 200.0
+  },
+  "1473": {
+    "City": "Strasbourg",
+    "Latitude": 48.584614,
+    "Longitude": 7.7507127,
+    "Frequency": 30,
+    "Percentage_Growth": 114.28571428571428
+  },
+  "1474": {
+    "City": "Basel",
+    "Latitude": 47.5581077,
+    "Longitude": 7.5878261,
+    "Frequency": 35,
+    "Percentage_Growth": 288.88888888888886
+  },
+  "1475": {
+    "City": "Paris",
+    "Latitude": 48.8588897,
+    "Longitude": 2.320041,
+    "Frequency": 23,
+    "Percentage_Growth": 360.0
+  },
+  "1476": {
+    "City": "Ulm",
+    "Latitude": 48.3984968,
+    "Longitude": 9.9912458,
+    "Frequency": 10,
+    "Percentage_Growth": 66.66666666666666
+  },
+  "1477": {
+    "City": "Lyon",
+    "Latitude": 45.7578137,
+    "Longitude": 4.8320114,
+    "Frequency": 22,
+    "Percentage_Growth": 266.66666666666663
+  },
+  "1478": {
+    "City": "L\u00fcbeck",
+    "Latitude": 53.866444,
+    "Longitude": 10.684738,
+    "Frequency": 19,
+    "Percentage_Growth": 280.0
+  },
+  "1479": {
+    "City": "Augsburg",
+    "Latitude": 48.3690341,
+    "Longitude": 10.8979522,
+    "Frequency": 37,
+    "Percentage_Growth": 131.25
+  },
+  "1480": {
+    "City": "Treviso",
+    "Latitude": 45.8066913,
+    "Longitude": 12.2063158,
+    "Frequency": 22,
+    "Percentage_Growth": 214.28571428571428
+  },
+  "1481": {
+    "City": "Barcelona",
+    "Latitude": 41.3825802,
+    "Longitude": 2.177073,
+    "Frequency": 20,
+    "Percentage_Growth": 233.33333333333334
+  },
+  "1482": {
+    "City": "Ulm",
+    "Latitude": 48.3984968,
+    "Longitude": 9.9912458,
+    "Frequency": 18,
+    "Percentage_Growth": 260.0
+  },
+  "1483": {
+    "City": "Paris",
+    "Latitude": 48.8588897,
+    "Longitude": 2.320041,
+    "Frequency": 51,
+    "Percentage_Growth": 131.8181818181818
+  },
+  "1484": {
+    "City": "L\u00fcbeck",
+    "Latitude": 53.866444,
+    "Longitude": 10.684738,
+    "Frequency": 13,
+    "Percentage_Growth": 85.71428571428571
+  },
+  "1485": {
+    "City": "Firenze",
+    "Latitude": 43.7697955,
+    "Longitude": 11.2556404,
+    "Frequency": 28,
+    "Percentage_Growth": 300.0
+  },
+  "1486": {
+    "City": "Haarlem",
+    "Latitude": 52.3885317,
+    "Longitude": 4.6388048,
+    "Frequency": 11,
+    "Percentage_Growth": 120.0
+  },
+  "1487": {
+    "City": "Firenze",
+    "Latitude": 43.7697955,
+    "Longitude": 11.2556404,
+    "Frequency": 23,
+    "Percentage_Growth": 283.33333333333337
+  },
+  "1488": {
+    "City": "Mainz",
+    "Latitude": 49.9995205,
+    "Longitude": 8.2736253,
+    "Frequency": 34,
+    "Percentage_Growth": 385.7142857142857
+  },
+  "1489": {
+    "City": "Zaragoza",
+    "Latitude": 41.6521342,
+    "Longitude": -0.8809428,
+    "Frequency": 9,
+    "Percentage_Growth": 80.0
+  },
+  "1490": {
+    "City": "Firenze",
+    "Latitude": 43.7697955,
+    "Longitude": 11.2556404,
+    "Frequency": 81,
+    "Percentage_Growth": 268.1818181818182
+  },
+  "1491": {
+    "City": "Antwerpen",
+    "Latitude": 51.2211097,
+    "Longitude": 4.3997081,
+    "Frequency": 33,
+    "Percentage_Growth": 371.42857142857144
+  },
+  "1492": {
+    "City": "Napoli",
+    "Latitude": 40.8358846,
+    "Longitude": 14.2487679,
+    "Frequency": 20,
+    "Percentage_Growth": 300.0
+  },
+  "1493": {
+    "City": "Barcelona",
+    "Latitude": 41.3825802,
+    "Longitude": 2.177073,
+    "Frequency": 33,
+    "Percentage_Growth": 229.99999999999997
+  },
+  "1494": {
+    "City": "Deventer",
+    "Latitude": 52.2694896,
+    "Longitude": 6.2364886,
+    "Frequency": 17,
+    "Percentage_Growth": 183.33333333333331
+  },
+  "1495": {
+    "City": "Speyer",
+    "Latitude": 49.3165553,
+    "Longitude": 8.433615,
+    "Frequency": 32,
+    "Percentage_Growth": 540.0
+  },
+  "1496": {
+    "City": "London",
+    "Latitude": 51.5074456,
+    "Longitude": -0.1277653,
+    "Frequency": 33,
+    "Percentage_Growth": 266.66666666666663
+  },
+  "1497": {
+    "City": "Paris",
+    "Latitude": 48.8588897,
+    "Longitude": 2.320041,
+    "Frequency": 194,
+    "Percentage_Growth": 95.95959595959596
+  },
+  "1498": {
+    "City": "Barcelona",
+    "Latitude": 41.3825802,
+    "Longitude": 2.177073,
+    "Frequency": 23,
+    "Percentage_Growth": 109.09090909090908
+  },
+  "1499": {
+    "City": "Westminster",
+    "Latitude": 51.5004439,
+    "Longitude": -0.1265398,
+    "Frequency": 14,
+    "Percentage_Growth": 133.33333333333331
+  },
+  "1500": {
+    "City": "Firenze",
+    "Latitude": 43.7697955,
+    "Longitude": 11.2556404,
+    "Frequency": 92,
+    "Percentage_Growth": 922.2222222222222
+  },
+  "1501": {
+    "City": "M\u00fcnchen",
+    "Latitude": 48.1371079,
+    "Longitude": 11.5753822,
+    "Frequency": 23,
+    "Percentage_Growth": 76.92307692307693
+  },
+  "1502": {
+    "City": "London",
+    "Latitude": 51.5074456,
+    "Longitude": -0.1277653,
+    "Frequency": 29,
+    "Percentage_Growth": 163.63636363636365
+  },
+  "1503": {
+    "City": "Sevilla",
+    "Latitude": 37.3886303,
+    "Longitude": -5.9953403,
+    "Frequency": 19,
+    "Percentage_Growth": 111.11111111111111
+  },
+  "1504": {
+    "City": "Pavia",
+    "Latitude": 45.0368546,
+    "Longitude": 9.1378251,
+    "Frequency": 16,
+    "Percentage_Growth": 100.0
+  },
+  "1505": {
+    "City": "Firenze",
+    "Latitude": 43.7697955,
+    "Longitude": 11.2556404,
+    "Frequency": 47,
+    "Percentage_Growth": 327.2727272727273
+  },
+  "1506": {
+    "City": "Pavia",
+    "Latitude": 45.0368546,
+    "Longitude": 9.1378251,
+    "Frequency": 22,
+    "Percentage_Growth": 69.23076923076923
+  },
+  "1507": {
+    "City": "Frankfurt an der Oder",
+    "Latitude": 52.3412273,
+    "Longitude": 14.549452,
+    "Frequency": 15,
+    "Percentage_Growth": 150.0
+  },
+  "1508": {
+    "City": "Frankfurt an der Oder",
+    "Latitude": 52.3412273,
+    "Longitude": 14.549452,
+    "Frequency": 33,
+    "Percentage_Growth": 120.0
+  },
+  "1509": {
+    "City": "Erfurt",
+    "Latitude": 50.9777974,
+    "Longitude": 11.0287364,
+    "Frequency": 25,
+    "Percentage_Growth": 316.66666666666663
+  },
+  "1510": {
+    "City": "Antwerpen",
+    "Latitude": 51.2211097,
+    "Longitude": 4.3997081,
+    "Frequency": 67,
+    "Percentage_Growth": 139.28571428571428
+  },
+  "1511": {
+    "City": "Sevilla",
+    "Latitude": 37.3886303,
+    "Longitude": -5.9953403,
+    "Frequency": 18,
+    "Percentage_Growth": 100.0
+  },
+  "1512": {
+    "City": "Erfurt",
+    "Latitude": 50.9777974,
+    "Longitude": 11.0287364,
+    "Frequency": 30,
+    "Percentage_Growth": 275.0
+  },
+  "1513": {
+    "City": "Rouen",
+    "Latitude": 49.4404591,
+    "Longitude": 1.0939658,
+    "Frequency": 20,
+    "Percentage_Growth": 233.33333333333334
+  },
+  "1514": {
+    "City": "Landshut",
+    "Latitude": 48.536217,
+    "Longitude": 12.1516551,
+    "Frequency": 19,
+    "Percentage_Growth": 171.42857142857142
+  },
+  "1515": {
+    "City": "Rouen",
+    "Latitude": 49.4404591,
+    "Longitude": 1.0939658,
+    "Frequency": 34,
+    "Percentage_Growth": 209.0909090909091
+  },
+  "1516": {
+    "City": "Siena",
+    "Latitude": 43.1672059,
+    "Longitude": 11.467561,
+    "Frequency": 16,
+    "Percentage_Growth": 166.66666666666669
+  },
+  "1517": {
+    "City": "Hagenau",
+    "Latitude": 48.8172236,
+    "Longitude": 7.7885978,
+    "Frequency": 19,
+    "Percentage_Growth": 280.0
+  },
+  "1518": {
+    "City": "Wittenberg",
+    "Latitude": 51.8666527,
+    "Longitude": 12.646761,
+    "Frequency": 29,
+    "Percentage_Growth": 480.0
+  },
+  "1519": {
+    "City": "Landshut",
+    "Latitude": 48.536217,
+    "Longitude": 12.1516551,
+    "Frequency": 16,
+    "Percentage_Growth": 220.00000000000003
+  },
+  "1520": {
+    "City": "Perugia",
+    "Latitude": 43.1070321,
+    "Longitude": 12.4029962,
+    "Frequency": 24,
+    "Percentage_Growth": 380.0
+  },
+  "1521": {
+    "City": "Krak\u00f3w",
+    "Latitude": 50.0469432,
+    "Longitude": 19.9971534,
+    "Frequency": 32,
+    "Percentage_Growth": 190.9090909090909
+  },
+  "1522": {
+    "City": "Speyer",
+    "Latitude": 49.3165553,
+    "Longitude": 8.433615,
+    "Frequency": 29,
+    "Percentage_Growth": 222.22222222222223
+  },
+  "1523": {
+    "City": "Wroc\u0142aw",
+    "Latitude": 51.1089776,
+    "Longitude": 17.0326689,
+    "Frequency": 26,
+    "Percentage_Growth": 271.42857142857144
+  },
+  "1524": {
+    "City": "Eilenburg",
+    "Latitude": 51.4586736,
+    "Longitude": 12.6344389,
+    "Frequency": 27,
+    "Percentage_Growth": 237.5
+  },
+  "1525": {
+    "City": "Altenburg",
+    "Latitude": 50.9852411,
+    "Longitude": 12.4340988,
+    "Frequency": 39,
+    "Percentage_Growth": 290.0
+  },
+  "1526": {
+    "City": "Rostock",
+    "Latitude": 54.0886707,
+    "Longitude": 12.1400211,
+    "Frequency": 20,
+    "Percentage_Growth": 233.33333333333334
+  },
+  "1527": {
+    "City": "Dresden",
+    "Latitude": 51.0493286,
+    "Longitude": 13.7381437,
+    "Frequency": 22,
+    "Percentage_Growth": 214.28571428571428
+  },
+  "1528": {
+    "City": "Zaragoza",
+    "Latitude": 41.6521342,
+    "Longitude": -0.8809428,
+    "Frequency": 12,
+    "Percentage_Growth": 100.0
+  },
+  "1529": {
+    "City": "Leuven",
+    "Latitude": 50.879202,
+    "Longitude": 4.7011675,
+    "Frequency": 15,
+    "Percentage_Growth": 200.0
+  },
+  "1530": {
+    "City": "N\u00fcrnberg",
+    "Latitude": 49.453872,
+    "Longitude": 11.077298,
+    "Frequency": 330,
+    "Percentage_Growth": 168.29268292682926
+  },
+  "1531": {
+    "City": "Frankfurt am Main",
+    "Latitude": 50.1106444,
+    "Longitude": 8.6820917,
+    "Frequency": 31,
+    "Percentage_Growth": 520.0
+  },
+  "1532": {
+    "City": "Regensburg",
+    "Latitude": 49.0195333,
+    "Longitude": 12.0974869,
+    "Frequency": 14,
+    "Percentage_Growth": 180.0
+  },
+  "1533": {
+    "City": "Malm\u00f6",
+    "Latitude": 55.6052931,
+    "Longitude": 13.0001566,
+    "Frequency": 16,
+    "Percentage_Growth": 220.00000000000003
+  },
+  "1534": {
+    "City": "Z\u00fcrich",
+    "Latitude": 47.3744489,
+    "Longitude": 8.5410422,
+    "Frequency": 15,
+    "Percentage_Growth": 114.28571428571428
+  },
+  "1535": {
+    "City": "Frankfurt am Main",
+    "Latitude": 50.1106444,
+    "Longitude": 8.6820917,
+    "Frequency": 57,
+    "Percentage_Growth": 185.0
+  },
+  "1536": {
+    "City": "Freiburg im Breisgau",
+    "Latitude": 47.9960901,
+    "Longitude": 7.8494005,
+    "Frequency": 14,
+    "Percentage_Growth": 55.55555555555556
+  },
+  "1537": {
+    "City": "Southwark",
+    "Latitude": 51.5061349,
+    "Longitude": -0.1011379,
+    "Frequency": 15,
+    "Percentage_Growth": 150.0
+  },
+  "1538": {
+    "City": "Toulouse",
+    "Latitude": 43.6044622,
+    "Longitude": 1.4442469,
+    "Frequency": 20,
+    "Percentage_Growth": 122.22222222222223
+  },
+  "1539": {
+    "City": "Alcal\u00e1 de Henares",
+    "Latitude": 40.481954,
+    "Longitude": -3.363981,
+    "Frequency": 16,
+    "Percentage_Growth": 220.00000000000003
+  },
+  "1540": {
+    "City": "Antwerpen",
+    "Latitude": 51.2211097,
+    "Longitude": 4.3997081,
+    "Frequency": 260,
+    "Percentage_Growth": 126.08695652173914
+  },
+  "1541": {
+    "City": "Wroc\u0142aw",
+    "Latitude": 51.1089776,
+    "Longitude": 17.0326689,
+    "Frequency": 23,
+    "Percentage_Growth": 109.09090909090908
+  },
+  "1542": {
+    "City": "Sevilla",
+    "Latitude": 37.3886303,
+    "Longitude": -5.9953403,
+    "Frequency": 39,
+    "Percentage_Growth": 143.75
+  },
+  "1543": {
+    "City": "Rouen",
+    "Latitude": 49.4404591,
+    "Longitude": 1.0939658,
+    "Frequency": 32,
+    "Percentage_Growth": 433.3333333333333
+  },
+  "1544": {
+    "City": "Leuven",
+    "Latitude": 50.879202,
+    "Longitude": 4.7011675,
+    "Frequency": 15,
+    "Percentage_Growth": 114.28571428571428
+  },
+  "1545": {
+    "City": "Z\u00fcrich",
+    "Latitude": 47.3744489,
+    "Longitude": 8.5410422,
+    "Frequency": 45,
+    "Percentage_Growth": 95.65217391304348
+  },
+  "1546": {
+    "City": "Erfurt",
+    "Latitude": 50.9777974,
+    "Longitude": 11.0287364,
+    "Frequency": 58,
+    "Percentage_Growth": 262.5
+  },
+  "1547": {
+    "City": "Bologna",
+    "Latitude": 44.4938203,
+    "Longitude": 11.3426327,
+    "Frequency": 18,
+    "Percentage_Growth": 157.14285714285714
+  },
+  "1548": {
+    "City": "Frankfurt am Main",
+    "Latitude": 50.1106444,
+    "Longitude": 8.6820917,
+    "Frequency": 41,
+    "Percentage_Growth": 241.66666666666666
+  },
+  "1549": {
+    "City": "K\u00f6nigsberg",
+    "Latitude": 54.7046485,
+    "Longitude": 20.4565666,
+    "Frequency": 17,
+    "Percentage_Growth": 183.33333333333331
+  },
+  "1550": {
+    "City": "Bern",
+    "Latitude": 46.9484742,
+    "Longitude": 7.4521749,
+    "Frequency": 30,
+    "Percentage_Growth": 500.0
+  },
+  "1551": {
+    "City": "Marburg",
+    "Latitude": 50.8090106,
+    "Longitude": 8.7704695,
+    "Frequency": 37,
+    "Percentage_Growth": 362.5
+  },
+  "1552": {
+    "City": "Alcal\u00e1 de Henares",
+    "Latitude": 40.481954,
+    "Longitude": -3.363981,
+    "Frequency": 42,
+    "Percentage_Growth": 250.0
+  },
+  "1553": {
+    "City": "Krak\u00f3w",
+    "Latitude": 50.0469432,
+    "Longitude": 19.9971534,
+    "Frequency": 33,
+    "Percentage_Growth": 229.99999999999997
+  },
+  "1554": {
+    "City": "Burgos",
+    "Latitude": 42.343926,
+    "Longitude": -3.696977,
+    "Frequency": 16,
+    "Percentage_Growth": 166.66666666666669
+  },
+  "1555": {
+    "City": "Gent",
+    "Latitude": 51.0538286,
+    "Longitude": 3.7250121,
+    "Frequency": 17,
+    "Percentage_Growth": 240.0
+  },
+  "1556": {
+    "City": "Krak\u00f3w",
+    "Latitude": 50.0469432,
+    "Longitude": 19.9971534,
+    "Frequency": 32,
+    "Percentage_Growth": 255.55555555555554
+  },
+  "1557": {
+    "City": "Lisboa",
+    "Latitude": 38.7077507,
+    "Longitude": -9.1365919,
+    "Frequency": 48,
+    "Percentage_Growth": 433.3333333333333
+  },
+  "1558": {
+    "City": "Jena",
+    "Latitude": 50.9281717,
+    "Longitude": 11.5879359,
+    "Frequency": 34,
+    "Percentage_Growth": 240.0
+  },
+  "1559": {
+    "City": "Gent",
+    "Latitude": 51.0538286,
+    "Longitude": 3.7250121,
+    "Frequency": 15,
+    "Percentage_Growth": 200.0
+  },
+  "1560": {
+    "City": "N\u00fcrnberg",
+    "Latitude": 49.453872,
+    "Longitude": 11.077298,
+    "Frequency": 428,
+    "Percentage_Growth": 470.6666666666667
+  },
+  "1561": {
+    "City": "Caen",
+    "Latitude": 49.1813403,
+    "Longitude": -0.3635615,
+    "Frequency": 20,
+    "Percentage_Growth": 300.0
+  },
+  "1562": {
+    "City": "Orl\u00e9ans",
+    "Latitude": 47.9027336,
+    "Longitude": 1.9086066,
+    "Frequency": 65,
+    "Percentage_Growth": 622.2222222222223
+  },
+  "1563": {
+    "City": "Gent",
+    "Latitude": 51.0538286,
+    "Longitude": 3.7250121,
+    "Frequency": 22,
+    "Percentage_Growth": 214.28571428571428
+  },
+  "1564": {
+    "City": "Lauingen",
+    "Latitude": 48.5710836,
+    "Longitude": 10.4305438,
+    "Frequency": 17,
+    "Percentage_Growth": 240.0
+  },
+  "1565": {
+    "City": "Wroc\u0142aw",
+    "Latitude": 51.1089776,
+    "Longitude": 17.0326689,
+    "Frequency": 24,
+    "Percentage_Growth": 100.0
+  },
+  "1566": {
+    "City": "Regensburg",
+    "Latitude": 49.0195333,
+    "Longitude": 12.0974869,
+    "Frequency": 29,
+    "Percentage_Growth": 480.0
+  },
+  "1567": {
+    "City": "Frankfurt an der Oder",
+    "Latitude": 52.3412273,
+    "Longitude": 14.549452,
+    "Frequency": 18,
+    "Percentage_Growth": 200.0
+  },
+  "1568": {
+    "City": "Alba Iulia",
+    "Latitude": 46.0687385,
+    "Longitude": 23.5704398,
+    "Frequency": 15,
+    "Percentage_Growth": 200.0
+  },
+  "1569": {
+    "City": "M\u00fcnchen",
+    "Latitude": 48.1371079,
+    "Longitude": 11.5753822,
+    "Frequency": 28,
+    "Percentage_Growth": 211.11111111111111
+  },
+  "1570": {
+    "City": "Augsburg",
+    "Latitude": 48.3690341,
+    "Longitude": 10.8979522,
+    "Frequency": 50,
+    "Percentage_Growth": 316.66666666666663
+  },
+  "1571": {
+    "City": "Wolfenb\u00fcttel",
+    "Latitude": 52.1625283,
+    "Longitude": 10.5348215,
+    "Frequency": 31,
+    "Percentage_Growth": 181.8181818181818
+  },
+  "1572": {
+    "City": "M\u00fcnchen",
+    "Latitude": 48.1371079,
+    "Longitude": 11.5753822,
+    "Frequency": 45,
+    "Percentage_Growth": 650.0
+  },
+  "1573": {
+    "City": "Torino",
+    "Latitude": 45.0677551,
+    "Longitude": 7.6824892,
+    "Frequency": 17,
+    "Percentage_Growth": 183.33333333333331
+  },
+  "1574": {
+    "City": "Piacenza",
+    "Latitude": 44.8476352,
+    "Longitude": 9.6665313,
+    "Frequency": 19,
+    "Percentage_Growth": 171.42857142857142
+  },
+  "1575": {
+    "City": "Magdeburg",
+    "Latitude": 52.1315889,
+    "Longitude": 11.6399609,
+    "Frequency": 42,
+    "Percentage_Growth": 223.0769230769231
+  },
+  "1576": {
+    "City": "Bordeaux",
+    "Latitude": 44.841225,
+    "Longitude": -0.5800364,
+    "Frequency": 12,
+    "Percentage_Growth": 140.0
+  },
+  "1577": {
+    "City": "K\u00f8benhavn",
+    "Latitude": 55.6867243,
+    "Longitude": 12.5700724,
+    "Frequency": 43,
+    "Percentage_Growth": 152.94117647058823
+  },
+  "1578": {
+    "City": "Mantova",
+    "Latitude": 45.1692628,
+    "Longitude": 10.6708365,
+    "Frequency": 22,
+    "Percentage_Growth": 266.66666666666663
+  },
+  "1579": {
+    "City": "Wien",
+    "Latitude": 48.2083537,
+    "Longitude": 16.3725042,
+    "Frequency": 15,
+    "Percentage_Growth": 200.0
+  },
+  "1580": {
+    "City": "Sevilla",
+    "Latitude": 37.3886303,
+    "Longitude": -5.9953403,
+    "Frequency": 23,
+    "Percentage_Growth": 283.33333333333337
+  },
+  "1581": {
+    "City": "Lauingen",
+    "Latitude": 48.5710836,
+    "Longitude": 10.4305438,
+    "Frequency": 24,
+    "Percentage_Growth": 200.0
+  },
+  "1582": {
+    "City": "Sevilla",
+    "Latitude": 37.3886303,
+    "Longitude": -5.9953403,
+    "Frequency": 18,
+    "Percentage_Growth": 260.0
+  },
+  "1583": {
+    "City": "Troyes",
+    "Latitude": 48.2971626,
+    "Longitude": 4.0746257,
+    "Frequency": 52,
+    "Percentage_Growth": 477.77777777777777
+  },
+  "1584": {
+    "City": "Leiden",
+    "Latitude": 52.1594747,
+    "Longitude": 4.4908843,
+    "Frequency": 80,
+    "Percentage_Growth": 166.66666666666669
+  },
+  "1585": {
+    "City": "La Rochelle",
+    "Latitude": 46.159732,
+    "Longitude": -1.1515951,
+    "Frequency": 28,
+    "Percentage_Growth": 459.99999999999994
+  },
+  "1586": {
+    "City": "Dresden",
+    "Latitude": 51.0493286,
+    "Longitude": 13.7381437,
+    "Frequency": 34,
+    "Percentage_Growth": 183.33333333333331
+  },
+  "1587": {
+    "City": "Graz",
+    "Latitude": 47.0708678,
+    "Longitude": 15.4382786,
+    "Frequency": 17,
+    "Percentage_Growth": 240.0
+  },
+  "1588": {
+    "City": "M\u00fcnchen",
+    "Latitude": 48.1371079,
+    "Longitude": 11.5753822,
+    "Frequency": 50,
+    "Percentage_Growth": 455.55555555555554
+  },
+  "1589": {
+    "City": "Tours",
+    "Latitude": 47.3900474,
+    "Longitude": 0.6889268,
+    "Frequency": 90,
+    "Percentage_Growth": 1025.0
+  },
+  "1590": {
+    "City": "Treviso",
+    "Latitude": 45.8066913,
+    "Longitude": 12.2063158,
+    "Frequency": 35,
+    "Percentage_Growth": 337.5
+  },
+  "1591": {
+    "City": "Pavia",
+    "Latitude": 45.0368546,
+    "Longitude": 9.1378251,
+    "Frequency": 20,
+    "Percentage_Growth": 150.0
+  },
+  "1592": {
+    "City": "Oxford",
+    "Latitude": 51.7520131,
+    "Longitude": -1.2578499,
+    "Frequency": 18,
+    "Percentage_Growth": 200.0
+  },
+  "1593": {
+    "City": "Paris",
+    "Latitude": 48.8588897,
+    "Longitude": 2.320041,
+    "Frequency": 145,
+    "Percentage_Growth": 229.54545454545453
+  },
+  "1594": {
+    "City": "Leuven",
+    "Latitude": 50.879202,
+    "Longitude": 4.7011675,
+    "Frequency": 15,
+    "Percentage_Growth": 200.0
+  },
+  "1595": {
+    "City": "Augsburg",
+    "Latitude": 48.3690341,
+    "Longitude": 10.8979522,
+    "Frequency": 52,
+    "Percentage_Growth": 147.61904761904762
+  },
+  "1596": {
+    "City": "Barcelona",
+    "Latitude": 41.3825802,
+    "Longitude": 2.177073,
+    "Frequency": 50,
+    "Percentage_Growth": 177.77777777777777
+  },
+  "1597": {
+    "City": "Olomouc",
+    "Latitude": 49.5940567,
+    "Longitude": 17.251143,
+    "Frequency": 32,
+    "Percentage_Growth": 433.3333333333333
+  },
+  "1598": {
+    "City": "Ferrara",
+    "Latitude": 44.7667642,
+    "Longitude": 11.827939,
+    "Frequency": 59,
+    "Percentage_Growth": 321.42857142857144
+  },
+  "1599": {
+    "City": "Middelburg",
+    "Latitude": 51.4996784,
+    "Longitude": 3.6137371,
+    "Frequency": 28,
+    "Percentage_Growth": 300.0
+  },
+  "1600": {
+    "City": "Cambridge",
+    "Latitude": 52.2055314,
+    "Longitude": 0.1186637,
+    "Frequency": 33,
+    "Percentage_Growth": 560.0
+  }
+}

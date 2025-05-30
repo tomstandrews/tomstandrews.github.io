@@ -4,40 +4,54 @@
   <meta charset="UTF-8">
   <title>Historical Printing Map</title>
 
-  <!-- D3.js and TopoJSON libraries -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://unpkg.com/topojson-client@3"></script>
 
-  <!-- Custom map logic -->
   <script src="static/js/map.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 
   <style>
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 20px; /* This padding will push all content 20px from the left */
       background-color: #f9f9f9;
     }
-    h1 {
+    /* Reverting h1.map-title to its original implicit left alignment */
+    h1.map-title {
       margin-bottom: 10px;
+      /* Removed text-align: center; to revert to default left alignment */
+      /* style="font-size: 15px;" is an inline style, keeping it for consistency with original */
+    }
+    h1 { /* Generic h1 rule */
+        margin-bottom: 10px;
     }
     #year-label {
       font-size: 20px;
       margin-bottom: 10px;
       font-weight: bold;
     }
+    /* General SVG styles - keeping only common visual properties */
     svg {
-      width: 200;
-      height: 600;
       background-color: white;
       border: 1px solid #ccc;
+      /* Removed display: block; margin: 0 auto; to revert to original flow */
+    }
+    /* Setting specific dimensions for map and bar chart SVGs */
+    svg#map {
+      width: 800px;
+      height: 600px;
+    }
+    svg#bar-chart {
+      width: 300px;
+      height: 600px;
     }
     .country.selected {
-  fill: orange;
-  stroke: black;
-  stroke-width: 1.5;
-}
-
+      fill: orange;
+      stroke: black;
+      stroke-width: 1.5;
+    }
     .city {
       fill: red;
       opacity: 0.7;
@@ -49,47 +63,116 @@
     .country:hover {
       fill: orange;
     }
-    .map-title {
-  margin-top: 0;   /* or whatever value you like */
+    /* Reverting #controls to its original flex behavior (default is flex-start) */
+    #controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        /* Removed justify-content: center; to revert to default flex-start */
     }
+    /* Existing modal styles */
     .modal {
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-  }
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 8% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 640px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* Reverting city-line-chart to its original behavior in modal */
+    svg#city-line-chart {
+      /* Removed display: block; margin: 0 auto; to revert to original */
+      width: 600px; /* As per your original size */
+      height: 300px; /* As per your original size */
+    }
 
-  .modal-content {
-    background-color: #fff;
-    margin: 8% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 640px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+    /* Chart-specific styles (these remain left-aligned as previously requested and confirmed) */
+    .chart-section-title {
+        text-align: left; /* Remains left-aligned */
+        margin-top: 40px;
+        color: #0056b3;
+    }
+    .chart-controls {
+        display: flex;
+        justify-content: flex-start; /* Remains left-aligned */
+        align-items: center;
+        gap: 20px; /* Increased gap for better spacing */
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: calc(80% - 30px);
+        max-width: 900px;
+    }
+    .chart-controls label {
+        margin-right: 5px; /* Adjusted margin */
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+    .chart-controls select {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        cursor: pointer;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    .chart-controls select:focus {
+        border-color: #007bff;
+    }
+    #chart-container {
+        width: 80%;
+        max-width: 900px;
+        margin-left: 0; /* Remains left-aligned */
+        margin-right: auto;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #chart-container canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    .loading-message {
+        font-size: 1.2em;
+        color: #666;
+    }
   </style>
 </head>
 <body>
@@ -99,21 +182,299 @@
   <svg id="bar-chart" width="300" height="600"></svg>
   <div id="city-info" style="margin-top: 10px; font-size: 14px; font-weight: bold;"></div>
   <div id="controls" style="display: flex; align-items: center; gap: 10px; margin-top: 20px;">
-  <label for="year-slider">
-  Year: <span id="slider-year-text">---</span>
-</label>
-<input type="range" id="year-slider">
-
-</div>
-<!-- Modal -->
-<div id="cityModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3 id="city-graph-title" style="font-family: sans-serif;"></h3>
-    <svg id="city-line-chart" width="600" height="300"></svg>
-
+    <label for="year-slider">
+      Year: <span id="slider-year-text">---</span>
+    </label>
+    <input type="range" id="year-slider">
   </div>
-</div>
+  <div id="cityModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="city-graph-title" style="font-family: sans-serif;"></h3>
+      <svg id="city-line-chart" width="600" height="300"></svg>
+    </div>
+  </div>
+
+  <h2 class="chart-section-title">Historical Proportions by Region</h2>
+  <div class="chart-controls">
+      <label for="data-type-select">Select Subject or Language</label>
+      <select id="data-type-select">
+          <option value="language_data">Language</option>
+          <option value="subject_data">Subject</option>
+      </select>
+      <label for="region-select">Select a Region:</label>
+      <select id="region-select">
+          </select>
+  </div>
+
+  <div id="chart-container">
+      <canvas id="languageChart"></canvas>
+  </div>
+
+  <script>
+      let myChart = null; // To store the Chart.js instance
+
+      // Define a consistent color palette for categories (languages and subjects)
+      const CATEGORY_COLORS = {
+          // Languages (existing)
+          "Portuguese": "#1f77b4",
+          "Japanese": "#ff7f0e",
+          "Latin": "#2ca02c",
+          "Spanish": "#d62728",
+          "Chinese": "#9467bd",
+          "English": "#8c564b",
+          "French": "#e377c2",
+          "Dutch": "#7f7f7f",
+          "Greek": "#bcbd22",
+          "German": "#17becf",
+          "Czech": "#aec7e8",
+          "Polish": "#ffbb78",
+          "Hebrew": "#98df8a",
+          "Church Slavonic": "#ff9896",
+          "Hungarian": "#c5b0d5",
+          "Catalan": "#c49c94",
+          "Romanian": "#f7b6d2",
+          "Swedish": "#c7c7c7",
+          "Danish": "#dbdb8d",
+          "Icelandic": "#9edae5",
+          "Old Prussian": "#fccf03",
+          // Subjects (expanded and revised colors for better distinction)
+          "Religious": "#8dd3c7",            // Teal
+  "Medical Texts": "#fb8072",        // Salmon
+  "News Books": "#fdb462",           // Orange
+  "Travel": "#80b1d3",               // Sky Blue
+  "Adages and Emblem Books": "#b3de69", // Light Green
+  "Jurisprudence": "#bebada",        // Light Purple
+  "Educational Books": "#ccebc5",    // Mint
+  "Literature": "#bc80bd",           // Lavender
+  "Poetry": "#ffed6f",               // Light Yellow
+  "Ordinances and Edicts": "#fccde5",// Pink
+  "Linguistics and Philology": "#d9d9d9", // Light Gray
+  "History and Chronicles": "#fdb462",   // Orange
+  "Almanacs, Calendars and Prognostications": "#a6cee3", // Light Blue
+  "Classical Authors": "#cab2d6",    // Mauve
+  "Music": "#b2df8a",                // Soft Green
+  "University Publications": "#ffffb3", // Pale Yellow
+  "Bibles (including parts)": "#8dd3c7", // Teal (same as Religious)
+  "Science": "#66c2a5",              // Muted Teal
+  "Philosophy": "#e5c494",           // Beige
+  "Arts": "#ffb3b3",                 // Rose
+  "Geography": "#b3de69",            // Light Green
+  "Mathematics": "#c2a5cf",          // Lilac
+  "Astronomy": "#a6d854",            // Green-Yellow
+  "Grammar": "#ffd92f",              // Bright Yellow
+  "Rhetoric": "#e78ac3",             // Orchid
+  "Logic": "#999999",                // Gray
+  "Politics": "#fc8d62",             // Coral
+  "Economics": "#8da0cb",            // Cornflower Blue
+  "Education": "#ccebc5",            // Mint (same as Educational Books)
+  "Military": "#e41a1c",             // Red
+  "Biography": "#f781bf",            // Pinkish Purple
+  "Agriculture": "#a6d854",          // Green-Yellow
+  "Architecture": "#d95f02",         // Burnt Orange
+  "Heraldry": "#7570b3",             // Violet
+  "Costume": "#fb9a99",              // Blush
+  "Cookery": "#fdcdac",              // Peach
+  "Games": "#b15928",                 // Brown
+  "Other": "#000000",
+      };
+
+
+      async function loadChartData() {
+          try {
+              // Updated path to the new JSON file containing both language and subject data
+              const jsonPath = "static/data/stacked_language_and_subject_values.json";
+              const response = await fetch(jsonPath);
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const allRegionData = await response.json();
+
+              populateRegionSelect(allRegionData);
+
+              const regionSelect = document.getElementById('region-select');
+              const dataTypeSelect = document.getElementById('data-type-select');
+
+              // Set initial selections and render the first chart
+              const initialRegion = Object.keys(allRegionData).length > 0 ? Object.keys(allRegionData)[0] : null;
+              const initialDataType = dataTypeSelect.value; // 'language_data' by default
+
+              if (initialRegion) {
+                  renderChart(initialRegion, initialDataType, allRegionData);
+              } else {
+                  document.getElementById('chart-container').innerHTML = '<p class="loading-message">No region data available.</p>';
+              }
+
+              // Add event listeners for changes in region or data type
+              regionSelect.addEventListener('change', () => {
+                  renderChart(regionSelect.value, dataTypeSelect.value, allRegionData);
+              });
+              dataTypeSelect.addEventListener('change', () => {
+                  renderChart(regionSelect.value, dataTypeSelect.value, allRegionData);
+              });
+
+          } catch (error) {
+              console.error('Error loading or processing chart data:', error);
+              document.getElementById('chart-container').innerHTML = '<p class="loading-message" style="color: red;">Failed to load chart data. Please ensure "stacked_language_and_subject_values.json" is in the "static" folder.</p>';
+          }
+      }
+
+      function populateRegionSelect(data) {
+          const regionSelect = document.getElementById('region-select');
+          // Clear existing options, if any
+          regionSelect.innerHTML = '';
+          for (const regionName in data) {
+              const option = document.createElement('option');
+              option.value = regionName;
+              option.textContent = regionName;
+              regionSelect.appendChild(option);
+          }
+      }
+
+      // Modified renderChart function to accept dataType
+      function renderChart(regionName, dataType, allRegionData) {
+          const dataForRegion = allRegionData[regionName];
+          const ctx = document.getElementById('languageChart').getContext('2d'); // Canvas ID remains the same
+
+          if (myChart) {
+              myChart.destroy(); // Destroy previous chart instance if it exists
+          }
+
+          // Select the specific data (language_data or subject_data) based on dataType
+          const selectedData = dataForRegion ? dataForRegion[dataType] : null;
+
+          if (!selectedData || selectedData.length === 0) {
+              ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear canvas
+              const container = document.getElementById('chart-container');
+              // Determine the label for the message
+              const dataTypeLabel = dataType === 'language_data' ? 'language' : 'subject';
+              container.innerHTML = `<p class="loading-message">No ${dataTypeLabel} data available for ${regionName}.</p>`;
+              return;
+          } else {
+               // Restore canvas if it was replaced by a message
+              const container = document.getElementById('chart-container');
+              if (!document.getElementById('languageChart')) {
+                  container.innerHTML = '<canvas id="languageChart"></canvas>';
+                  ctx = document.getElementById('languageChart').getContext('2d');
+              }
+          }
+
+          const years = selectedData.map(d => d.year);
+
+          // Dynamically get all category keys (languages or subjects), excluding 'year'
+          const allCategories = new Set();
+          selectedData.forEach(d => {
+              for (const key in d) {
+                  if (key !== 'year') {
+                      allCategories.add(key);
+                  }
+              }
+          });
+          // Sort categories alphabetically for consistent stacking order in the legend and chart
+          const categories = Array.from(allCategories).sort();
+
+          const datasets = categories.map(category => {
+              // Use predefined color here for the category
+              const color = CATEGORY_COLORS[category] || '#cccccc'; // Fallback to grey if color not defined
+
+              return {
+                  label: category,
+                  data: selectedData.map(d => ({ x: d.year, y: d[category] || 0 })),
+                  fill: true,
+                  backgroundColor: color,
+                  borderColor: color,
+                  borderWidth: 1,
+                  tension: 0.4, // Smooth the lines
+                  stack: 'categoryStack', // Use a generic stack key for all categories
+                  pointRadius: 0 // Hide points for cleaner area chart
+              };
+          });
+
+          // Determine chart title prefix based on selected data type
+          const chartTitlePrefix = dataType === 'language_data' ? 'Language' : 'Subject';
+
+          myChart = new Chart(ctx, {
+              type: 'line', // 'line' type is used for stacked area charts in Chart.js
+              data: {
+                  labels: years,
+                  datasets: datasets
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                      title: {
+                          display: true,
+                          text: `${chartTitlePrefix} Proportions in ${regionName} (${years[0]} - ${years[years.length - 1]})`,
+                          font: {
+                              size: 18
+                          }
+                      },
+                      tooltip: {
+                          mode: 'index',
+                          intersect: false,
+                          callbacks: {
+                              label: function(context) {
+                                  let label = context.dataset.label || '';
+                                  if (label) {
+                                      label += ': ';
+                                  }
+                                  if (context.parsed.y !== null) {
+                                      label += (context.parsed.y * 100).toFixed(2) + '%';
+                                  }
+                                  return label;
+                              }
+                          }
+                      }
+                  },
+                  scales: {
+                      x: {
+                          type: 'linear', // Use linear for year numbers
+                          title: {
+                              display: true,
+                              text: 'Year',
+                              font: {
+                                  size: 14
+                              }
+                          },
+                          // Set the minimum year for the x-axis
+                          min: years[0],
+                          // Set the maximum year for the x-axis
+                          max: years[years.length - 1],
+                          ticks: {
+                              // Ensure years are integers and show only relevant labels
+                              callback: function(value, index, values) {
+                                  if (Number.isInteger(value)) {
+                                      return value;
+                                  }
+                              }
+                          }
+                      },
+                      y: {
+                          stacked: true, // Crucial for stacking
+                          title: {
+                              display: true,
+                              text: 'Proportion',
+                              font: {
+                                  size: 14
+                              }
+                          },
+                          min: 0,
+                          max: 1, // Proportions sum to 1
+                          ticks: {
+                              callback: function(value) {
+                                  return (value * 100) + '%'; // Format as percentage
+                              }
+                          }
+                      }
+                  }
+              }
+          });
+      }
+
+      // Load the data and initialize the chart when the page loads
+      document.addEventListener('DOMContentLoaded', loadChartData);
+  </script>
 
 </body>
 </html>
