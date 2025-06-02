@@ -151,7 +151,7 @@
     .chart-controls select:focus {
         border-color: #007bff;
     }
-    #chart-container {
+    #chart-container, #chart-container-frequencies, #language-differences-table-container { /* Apply styles to all chart/table containers */
         width: 80%;
         max-width: 900px;
         margin-left: 0; /* Remains left-aligned */
@@ -164,14 +164,43 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 40px; /* Added margin for spacing between charts */
     }
-    #chart-container canvas {
+    #chart-container canvas, #chart-container-frequencies canvas { /* Apply to both canvases */
         max-width: 100%;
         height: auto;
     }
     .loading-message {
         font-size: 1.2em;
         color: #666;
+    }
+
+    /* Styles for the new table */
+    #language-differences-table-container {
+        display: block; /* Override flex to allow table to render naturally */
+        overflow-x: auto; /* Enable horizontal scrolling for small screens */
+    }
+    #language-differences-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    #language-differences-table th,
+    #language-differences-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+    #language-differences-table th {
+        background-color: #0056b3;
+        color: white;
+        font-weight: bold;
+    }
+    #language-differences-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    #language-differences-table tbody tr:hover {
+        background-color: #ddd;
     }
   </style>
 </head>
@@ -211,8 +240,23 @@
       <canvas id="languageChart"></canvas>
   </div>
 
+  <h2 class="chart-section-title">Centralisation of Print Activity</h2>
+  <div class="chart-controls" id="chart-controls-frequencies">
+      <label for="region-select-frequencies">Select a Region:</label>
+      <select id="region-select-frequencies"></select>
+  </div>
+  <div id="chart-container-frequencies">
+      <canvas id="frequenciesChart"></canvas>
+  </div>
+
+  <h2 class="chart-section-title">Top 20 Language Proportion Differences (City vs. Region)</h2>
+  <div id="language-differences-table-container">
+      <p class="loading-message">Loading language difference data...</p>
+  </div>
+
   <script>
-      let myChart = null; // To store the Chart.js instance
+      let myChart = null; // To store the Chart.js instance for language/subject chart
+      let myFrequenciesChart = null; // To store the Chart.js instance for frequencies chart
 
       // Define a consistent color palette for categories (languages and subjects)
       const CATEGORY_COLORS = {
@@ -240,43 +284,43 @@
           "Old Prussian": "#fccf03",
           // Subjects (expanded and revised colors for better distinction)
           "Religious": "#8dd3c7",            // Teal
-  "Medical Texts": "#fb8072",        // Salmon
-  "News Books": "#fdb462",           // Orange
-  "Travel": "#80b1d3",               // Sky Blue
-  "Adages and Emblem Books": "#b3de69", // Light Green
-  "Jurisprudence": "#bebada",        // Light Purple
-  "Educational Books": "#ccebc5",    // Mint
-  "Literature": "#bc80bd",           // Lavender
-  "Poetry": "#ffed6f",               // Light Yellow
-  "Ordinances and Edicts": "#fccde5",// Pink
-  "Linguistics and Philology": "#d9d9d9", // Light Gray
-  "History and Chronicles": "#fdb462",   // Orange
-  "Almanacs, Calendars and Prognostications": "#a6cee3", // Light Blue
-  "Classical Authors": "#cab2d6",    // Mauve
-  "Music": "#b2df8a",                // Soft Green
-  "University Publications": "#ffffb3", // Pale Yellow
-  "Bibles (including parts)": "#8dd3c7", // Teal (same as Religious)
-  "Science": "#66c2a5",              // Muted Teal
-  "Philosophy": "#e5c494",           // Beige
-  "Arts": "#ffb3b3",                 // Rose
-  "Geography": "#b3de69",            // Light Green
-  "Mathematics": "#c2a5cf",          // Lilac
-  "Astronomy": "#a6d854",            // Green-Yellow
-  "Grammar": "#ffd92f",              // Bright Yellow
-  "Rhetoric": "#e78ac3",             // Orchid
-  "Logic": "#999999",                // Gray
-  "Politics": "#fc8d62",             // Coral
-  "Economics": "#8da0cb",            // Cornflower Blue
-  "Education": "#ccebc5",            // Mint (same as Educational Books)
-  "Military": "#e41a1c",             // Red
-  "Biography": "#f781bf",            // Pinkish Purple
-  "Agriculture": "#a6d854",          // Green-Yellow
-  "Architecture": "#d95f02",         // Burnt Orange
-  "Heraldry": "#7570b3",             // Violet
-  "Costume": "#fb9a99",              // Blush
-  "Cookery": "#fdcdac",              // Peach
-  "Games": "#b15928",                 // Brown
-  "Other": "#000000",
+          "Medical Texts": "#fb8072",        // Salmon
+          "News Books": "#fdb462",           // Orange
+          "Travel": "#80b1d3",               // Sky Blue
+          "Adages and Emblem Books": "#b3de69", // Light Green
+          "Jurisprudence": "#bebada",        // Light Purple
+          "Educational Books": "#ccebc5",    // Mint
+          "Literature": "#bc80bd",           // Lavender
+          "Poetry": "#ffed6f",               // Light Yellow
+          "Ordinances and Edicts": "#fccde5",// Pink
+          "Linguistics and Philology": "#d9d9d9", // Light Gray
+          "History and Chronicles": "#fdb462",   // Orange
+          "Almanacs, Calendars and Prognostications": "#a6cee3", // Light Blue
+          "Classical Authors": "#cab2d6",    // Mauve
+          "Music": "#b2df8a",                // Soft Green
+          "University Publications": "#ffffb3", // Pale Yellow
+          "Bibles (including parts)": "#8dd3c7", // Teal (same as Religious)
+          "Science": "#66c2a5",              // Muted Teal
+          "Philosophy": "#e5c494",           // Beige
+          "Arts": "#ffb3b3",                 // Rose
+          "Geography": "#b3de69",            // Light Green
+          "Mathematics": "#c2a5cf",          // Lilac
+          "Astronomy": "#a6d854",            // Green-Yellow
+          "Grammar": "#ffd92f",              // Bright Yellow
+          "Rhetoric": "#e78ac3",             // Orchid
+          "Logic": "#999999",                // Gray
+          "Politics": "#fc8d62",             // Coral
+          "Economics": "#8da0cb",            // Cornflower Blue
+          "Education": "#ccebc5",            // Mint (same as Educational Books)
+          "Military": "#e41a1c",             // Red
+          "Biography": "#f47f20",            // Darker Orange
+          "Agriculture": "#a6d854",          // Green-Yellow
+          "Architecture": "#d95f02",         // Burnt Orange
+          "Heraldry": "#7570b3",             // Violet
+          "Costume": "#fb9a99",              // Blush
+          "Cookery": "#fdcdac",              // Peach
+          "Games": "#b15928",                 // Brown
+          "Other": "#000000",                // Black for 'Other'
       };
 
 
@@ -334,7 +378,7 @@
       // Modified renderChart function to accept dataType
       function renderChart(regionName, dataType, allRegionData) {
           const dataForRegion = allRegionData[regionName];
-          const ctx = document.getElementById('languageChart').getContext('2d'); // Canvas ID remains the same
+          let ctx = document.getElementById('languageChart').getContext('2d'); // Canvas ID remains the same
 
           if (myChart) {
               myChart.destroy(); // Destroy previous chart instance if it exists
@@ -472,8 +516,289 @@
           });
       }
 
+      // --- New JavaScript functions for Frequencies Chart ---
+
+      async function loadFrequenciesChartData() {
+          try {
+              const jsonPath = "static/data/city_frequencies_summary.json"; // Path to the newly created JSON file
+              const response = await fetch(jsonPath);
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const allFrequenciesData = await response.json();
+
+              // Organize data by region and then year for easier access
+              const organizedData = {};
+              allFrequenciesData.forEach(item => {
+                  if (!organizedData[item.region]) {
+                      organizedData[item.region] = [];
+                  }
+                  organizedData[item.region].push(item);
+              });
+
+              populateFrequenciesRegionSelect(organizedData);
+
+              const regionSelectFrequencies = document.getElementById('region-select-frequencies');
+
+              const initialRegion = Object.keys(organizedData).length > 0 ? Object.keys(organizedData)[0] : null;
+
+              if (initialRegion) {
+                  renderFrequenciesChart(initialRegion, organizedData);
+              } else {
+                  document.getElementById('chart-container-frequencies').innerHTML = '<p class="loading-message">No region data available for frequencies.</p>';
+              }
+
+              regionSelectFrequencies.addEventListener('change', () => {
+                  renderFrequenciesChart(regionSelectFrequencies.value, organizedData);
+              });
+
+          } catch (error) {
+              console.error('Error loading or processing frequencies chart data:', error);
+              document.getElementById('chart-container-frequencies').innerHTML = '<p class="loading-message" style="color: red;">Failed to load frequencies chart data. Please ensure "city_frequencies_summary.json" is in the correct directory.</p>';
+          }
+      }
+
+      function populateFrequenciesRegionSelect(data) {
+          const regionSelect = document.getElementById('region-select-frequencies');
+          regionSelect.innerHTML = ''; // Clear existing options
+          for (const regionName in data) {
+              const option = document.createElement('option');
+              option.value = regionName;
+              option.textContent = regionName;
+              regionSelect.appendChild(option);
+          }
+      }
+
+      function renderFrequenciesChart(regionName, allFrequenciesData) {
+          const dataForRegion = allFrequenciesData[regionName];
+          let ctx = document.getElementById('frequenciesChart').getContext('2d');
+
+          if (myFrequenciesChart) {
+              myFrequenciesChart.destroy(); // Destroy previous chart instance
+          }
+
+          if (!dataForRegion || dataForRegion.length === 0) {
+              ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+              const container = document.getElementById('chart-container-frequencies');
+              container.innerHTML = `<p class="loading-message">No frequencies data available for ${regionName}.</p>`;
+              return;
+          } else {
+              const container = document.getElementById('chart-container-frequencies');
+              if (!document.getElementById('frequenciesChart')) { // Re-add canvas if it was removed
+                  container.innerHTML = '<canvas id="frequenciesChart"></canvas>';
+                  ctx = document.getElementById('frequenciesChart').getContext('2d');
+              }
+          }
+
+          // Sort data by year for correct line plotting
+          dataForRegion.sort((a, b) => a.year - b.year);
+
+          const years = dataForRegion.map(d => d.year);
+
+          myFrequenciesChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: years,
+                  datasets: [
+                      {
+                          label: 'Top city as percentage of all cities',
+                          data: dataForRegion.map(d => ({ x: d.year, y: d.top_1_percentage })),
+                          borderColor: 'rgb(75, 192, 192)', // Teal color
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          tension: 0.4,
+                          fill: false, // Don't fill area for distinct lines
+                          pointRadius: 3
+                      },
+                      {
+                          label: 'Top 2 cities as percentage of all cities', // NEW LINE LABEL
+                          data: dataForRegion.map(d => ({ x: d.year, y: d.top_2_percentage })), // NEW DATA POINT
+                          borderColor: 'rgb(54, 162, 235)', // Blue color for the new line
+                          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                          tension: 0.4,
+                          fill: false,
+                          pointRadius: 3
+                      },
+                      {
+                          label: 'Top 3 cities as percentage of all cities',
+                          data: dataForRegion.map(d => ({ x: d.year, y: d.top_3_percentage })),
+                          borderColor: 'rgb(255, 99, 132)', // Red color
+                          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                          tension: 0.4,
+                          fill: false,
+                          pointRadius: 3
+                      }
+                  ]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                      title: {
+                          display: true,
+                          text: `Domination of large cities in ${regionName} (${years[0]} - ${years[years.length - 1]})`,
+                          font: {
+                              size: 18
+                          }
+                      },
+                      tooltip: {
+                          mode: 'index',
+                          intersect: false,
+                          callbacks: {
+                              label: function(context) {
+                                  let label = context.dataset.label || '';
+                                  if (label) {
+                                      label += ': ';
+                                  }
+                                  if (context.parsed.y !== null) {
+                                      label += context.parsed.y.toFixed(2) + '%';
+                                  }
+                                  return label;
+                              }
+                          }
+                      }
+                  },
+                  scales: {
+                      x: {
+                          type: 'linear',
+                          title: {
+                              display: true,
+                              text: 'Year',
+                              font: {
+                                  size: 14
+                              }
+                          },
+                          min: years[0],
+                          max: years[years.length - 1],
+                          ticks: {
+                              callback: function(value, index, values) {
+                                  if (Number.isInteger(value)) {
+                                      return value;
+                                  }
+                              }
+                          }
+                      },
+                      y: {
+                          title: {
+                              display: true,
+                              text: 'Percentage (%)',
+                              font: {
+                                  size: 14
+                              }
+                          },
+                          min: 0,
+                          max: 100, // Percentages go up to 100
+                          ticks: {
+                              callback: function(value) {
+                                  return value + '%';
+                              }
+                          }
+                      }
+                  }
+              }
+          });
+      }
+
+      // --- New JavaScript function for Language Differences Table ---
+      async function loadLanguageDifferencesTable() {
+          try {
+              // Fetch the JSON data from the file
+              const jsonPath = "static/data/language_differences.json";
+              const response = await fetch(jsonPath);
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const rawData = await response.json(); // Get the raw (likely column-oriented) data
+
+              // --- Start of JSON conversion from column-oriented to array of records ---
+              const data = [];
+              // Determine the number of rows by checking the length of any column's inner object
+              // Assumes 'region' always exists and has all indices
+              const numRows = Object.keys(rawData.region).length;
+
+              for (let i = 0; i < numRows; i++) {
+                  const row = {};
+                  // Iterate over each column (e.g., 'region', 'place', 'Language', etc.)
+                  for (const colName in rawData) {
+                      // Assign the value for the current row's index to the new row object
+                      // Keys in rawData.column_name are strings ('0', '1', etc.)
+                      row[colName] = rawData[colName][String(i)];
+                  }
+                  data.push(row); // Add the constructed row to our data array
+              }
+              // --- End of JSON conversion ---
+
+              const tableContainer = document.getElementById('language-differences-table-container');
+              tableContainer.innerHTML = ''; // Clear loading message
+
+              if (!data || data.length === 0) {
+                  tableContainer.innerHTML = '<p class="loading-message">No language difference data available.</p>';
+                  return;
+              }
+
+              // Now 'data' is guaranteed to be an array, so .sort() will work
+              const top20Data = data.sort((a, b) => b.Absolute_Dif - a.Absolute_Dif).slice(0, 20); // This is line ~720
+
+              const table = document.createElement('table');
+              table.id = 'language-differences-table';
+
+              // Create table header
+              const thead = document.createElement('thead');
+              const headerRow = document.createElement('tr');
+              ['Region', 'City', 'Language', 'City Proportion', 'Region Proportion', 'Difference'].forEach(headerText => {
+                  const th = document.createElement('th');
+                  th.textContent = headerText;
+                  headerRow.appendChild(th);
+              });
+              thead.appendChild(headerRow);
+              table.appendChild(thead);
+
+              // Create table body
+              const tbody = document.createElement('tbody');
+              top20Data.forEach(item => {
+                  const tr = document.createElement('tr');
+                  const tdRegion = document.createElement('td');
+                  tdRegion.textContent = item.region;
+                  tr.appendChild(tdRegion);
+
+                  const tdPlace = document.createElement('td');
+                  tdPlace.textContent = item.place;
+                  tr.appendChild(tdPlace);
+
+                  const tdLanguage = document.createElement('td');
+                  tdLanguage.textContent = item.Language;
+                  tr.appendChild(tdLanguage);
+
+                  const tdProportionCity = document.createElement('td');
+                  tdProportionCity.textContent = (item.proportion_City * 100).toFixed(2) + '%';
+                  tr.appendChild(tdProportionCity);
+
+                  const tdProportionRegion = document.createElement('td');
+                  tdProportionRegion.textContent = (item.proportion_Region * 100).toFixed(2) + '%';
+                  tr.appendChild(tdProportionRegion);
+
+                  const tdDifference = document.createElement('td');
+                  tdDifference.textContent = (item.Difference * 100).toFixed(2) + '%';
+                  tr.appendChild(tdDifference);
+
+                  tbody.appendChild(tr);
+              });
+              table.appendChild(tbody);
+
+              tableContainer.appendChild(table);
+
+          } catch (error) {
+              console.error('Error loading or processing language differences data:', error);
+              document.getElementById('language-differences-table-container').innerHTML = '<p class="loading-message" style="color: red;">Failed to load language differences data. Please ensure "language_differences.json" is in the "static/data" folder and its content format is correct (e.g., column-oriented from pandas).</p>';
+          }
+      }
+
+
       // Load the data and initialize the chart when the page loads
-      document.addEventListener('DOMContentLoaded', loadChartData);
+      document.addEventListener('DOMContentLoaded', () => {
+          loadChartData(); // Loads the language/subject chart
+          loadFrequenciesChartData(); // Loads the new frequencies chart
+          loadLanguageDifferencesTable(); // Loads the new language differences table
+      });
   </script>
 
 </body>
